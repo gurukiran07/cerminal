@@ -29,7 +29,7 @@ def _set_color(color:str, bold=False, italic=False, underline=False):
 
     accepted_colors = {'black':"\033[30{}{}{}m", 'red':"\033[31{}{}{}m", 'green':"\033[32{}{}{}m",
                        'yellow':"\033[33{}{}{}m", 'blue':"\033[34{}{}{}m", 'magenta':"\033[35{}{}{}m", 
-                       'cyan':"\033[36{}{}{}m", 'white':"\033[37{}{}{}m", 'no_color':"\033[{}m"}
+                       'cyan':"\033[36{}{}{}m", 'white':"\033[37{}{}{}m", 'no_color':"\033[{}{}{}m"}
 
     if color not in accepted_colors:
         raise ValueError("Unknown color given {}".format(color))
