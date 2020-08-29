@@ -1,7 +1,7 @@
 import sys
 from time import sleep
 
-def cprint(text, color=None, background=None, bold=False, italic=False, underline=False):
+def cprint(text:str, color=None, background=None, bold=False, italic=False, underline=False):
     """
     prints the given text to stdout with color `color
     and resets back to normal after printing. Supported
