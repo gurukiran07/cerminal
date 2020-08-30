@@ -51,7 +51,7 @@ def _set_background(color:str):
     Sets the background of the cursor with color
     `color`.
     """
-
+    # TODO: Error handling and extend to support int values from 0 to 256.
     accepted_colors = {'black':"\033[40m", 'red':"\033[41m", 'green':"\033[42m",
                        'yellow':"\033[43m", 'blue':"\033[44m", 'magenta':"\033[45m", 
                        'cyan':"\033[46m", 'white':"\033[47m"}
