@@ -70,8 +70,8 @@ def get_color_codes(animation=False):
             #sleep(v)
             code = str(i*8 + j)
             sys.stdout.write("\033[38;5;{}m{}".format(code, code.ljust(4)))
-        print('\n')
-    print("\033[0m")
+        sys.stdout.write('\n')
+    sys.stdout.write("\033[0m")
 
 cprint("hello world",color=164,bold=True)
 
