@@ -1,7 +1,7 @@
 import sys
 from time import sleep
 
-def cprint(text:str, color=None, background=None, bold=False, italic=False, underline=False):
+def cprint(text, color=None, background=None, bold=False, italic=False, underline=False):
     """
     prints the given text to stdout with color `color
     and resets back to normal after printing. Supported
@@ -15,12 +15,22 @@ def cprint(text:str, color=None, background=None, bold=False, italic=False, unde
     out = text+_reset
     sys.stdout.write(out)
 
-def _set_color(color:str, bold=False, italic=False, underline=False):
+def _set_color(color, bold=False, italic=False, underline=False):
     """
     For setting color of the cursor with `color`.
-    Accepted colors are 'black', 'red', 'green',
+    Accepted colors alias are 'black', 'red', 'green',
     'yellow', 'blue', 'magenta', 'cyan', 'white'.
+    Can also gives an values between 0 to 255.
+    Check `get_color_codes()` for more info.
     """
+    #print(color.isnumeric())
+    if not isinstance(color, (int, str)):
+        raise TypeError("Expected an int or str type but given {} type".format(type(color).__name__))
+
+    if (isinstance(color, int) and (color>=0 and color<256)) or (color.isnumeric() and (int(color)>=0 and int(color)<256)):
+        sys.stdout.write("\033[38;5;{}m".format(color))
+        return
+
     if color is None:
         color = "no_color"
     _bold = ";1" if bold else ""
@@ -57,12 +67,12 @@ def get_color_codes(animation=False):
     v = 0.1 if animation else 0
     for i in range(32):
         for j in range(8):
-            sleep(v)
+            #sleep(v)
             code = str(i*8 + j)
             sys.stdout.write("\033[38;5;{}m{}".format(code, code.ljust(4)))
         print('\n')
     print("\033[0m")
 
-##cprint("hello world",color='cyan',bold=True)
+cprint("hello world",color=164,bold=True)
 
-get_color_codes(animation=True)
+#get_color_codes(animation=True)
