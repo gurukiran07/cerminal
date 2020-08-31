@@ -57,14 +57,10 @@ def _set_background(color):
     'cyan', 'white'. Can also gives an values between 0 to 255.
     """
 
-
     if not isinstance(color, (int, str)):
         raise TypeError(type_error.format(type(color).__name__))
     if _condition_for_int(color):
         return "\033[48;5;{}m".format(str(color))
-
-
-    # TODO: Error handling and extend to support int values from 0 to 256.
 
     accepted_colors = {'black':"\033[40m", 'red':"\033[41m", 'green':"\033[42m",
                        'yellow':"\033[43m", 'blue':"\033[44m", 'magenta':"\033[45m", 
@@ -87,18 +83,12 @@ def get_color_codes(animation=False, background=False, single_line=False):
         for j in range(8):
             sleep(v)
             code = str(i*8 + j)
-
             sys.stdout.write(ansi_code.format(code, code.ljust(4)))
             sys.stdout.write("\033[0m")
         sys.stdout.write(line)
 
 
 cprint("hello world",color="cyan",bold=True, background="164")
-
-            sys.stdout.write("\033[38;5;{}m{}".format(code, code.ljust(4)))
-        sys.stdout.write('\n')
-    sys.stdout.write("\033[0m")
-
 
 #get_color_codes(animation=True, background=True)
 
