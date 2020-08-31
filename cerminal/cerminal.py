@@ -16,6 +16,7 @@ def cprint(text, color=None, background=None, bold=False, italic=False, underlin
     _reset = "\033[0m"
     bg = '' if background is None else _set_background(background)
     font_color = _set_color(color, bold, italic, underline)
+    print(repr(font_color))
     out = bg + font_color + text + _reset
     sys.stdout.write(out)
 
@@ -28,21 +29,23 @@ def _set_color(color, bold=False, italic=False, underline=False):
     Check `get_color_codes()` for more info.
     """
 
-    if not isinstance(color, (int, str)):
+    if color is not None and not isinstance(color, (int, str)):
         raise TypeError(type_error.format(type(color).__name__))
 
-    if (isinstance(color, int) and (color>=0 and color<256)) or (color.isnumeric() and (int(color)>=0 and int(color)<256)):
-        return "\033[38;5;{}m".format(color)
-
-    if color is None:
-        color = "no_color"
     _bold = ";1" if bold else ""
     _italic = ";3" if italic else ""
     _underline = ";4" if underline else ""
 
+    if color is None:
+        return "\033[39{}{}{}m".format(_bold, _italic, _underline)
+
+    if (isinstance(color, int) and (color>=0 and color<256)) or (color.isnumeric() and (int(color)>=0 and int(color)<256)):
+        return "\033[38;5;{}m".format(color)
+
+
     accepted_colors = {'black':"\033[30{}{}{}m", 'red':"\033[31{}{}{}m", 'green':"\033[32{}{}{}m",
                        'yellow':"\033[33{}{}{}m", 'blue':"\033[34{}{}{}m", 'magenta':"\033[35{}{}{}m", 
-                       'cyan':"\033[36{}{}{}m", 'white':"\033[37{}{}{}m", 'no_color':"\033[{}{}{}m"}
+                       'cyan':"\033[36{}{}{}m", 'white':"\033[37{}{}{}m"}
 
     if color not in accepted_colors:
         raise ValueError("Unknown color given {}".format(color))
@@ -88,7 +91,7 @@ def get_color_codes(animation=False, background=False, single_line=False):
         sys.stdout.write(line)
 
 
-cprint("hello world",color="cyan",bold=True, background="164")
+cprint("hello world",background="cyan")
 
 #get_color_codes(animation=True, background=True)
 
