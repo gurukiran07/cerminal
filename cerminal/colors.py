@@ -9,29 +9,29 @@ def _condition_for_int(color):
 
 
 class FontColor:
-	"""
-	Font colors class
-	"""
-    black = "\033[30m"
-    red = "\033[31m"
-    green = "\033[32m"
-    yellow = "\033[33m"
-    blue = "\033[34m"
-    magenta = "\033[35m"
-    cyan = "\033[36m"
-    white = "\033[37m"
+    """
+    Font color class
+    """
+    black="\033[30m"
+    red ="\033[31m"
+    green ="\033[32m"
+    yellow ="\033[33m"
+    blue ="\033[34m"
+    magenta ="\033[35m"
+    cyan ="\033[36m"
+    white ="\033[37m"
 
     @classmethod
     def get_color(self, value, color, add_reset=True):
         if not isinstance(color, (int, str)):
-        	raise TypeError(type_error.format(type(color).__name__))
+            raise TypeError(type_error.format(type(color).__name__))
         
         if not add_reset:
-        	_reset = RESET
+            _reset = RESET
         _reset = RESET        
         
         if _condition_for_int(color):
-        	return "\033[38;5;{}m{}{}".format(color, value, _reset)
+            return "\033[38;5;{}m{}{}".format(color, value, _reset)
         
         accepted_color_alias = {
             "black": self.black,
@@ -44,14 +44,14 @@ class FontColor:
             "white": self.white,
         }
         if color not in accepted_color_alias:
-        	raise ValueError("Unknown color given {}".format(color))
+            raise ValueError("Unknown color given {}".format(color))
         return accepted_color_alias[color] + str(value) + _reset
 
 
 class BackgroundColor:
-	"""
-	Background colors class
-	"""
+    """
+    Background colors class
+    """
     black = "\033[40m"
     red = "\033[41m"
     green = "\033[42m"
@@ -67,10 +67,10 @@ class BackgroundColor:
             raise TypeError(type_error.format(type(color).__name__))
         
         if not add_reset:
-        	_reset = ''
+            _reset = ''
         else:
-        	_reset = RESET
-        	
+            _reset = RESET
+            
         if _condition_for_int(color):
             return "\033[48;5;{}m{}{}".format(color, value, _reset)
 
@@ -91,9 +91,9 @@ class BackgroundColor:
 
 
 class FontStyle:
-	"""
-	Font style class
-	"""
+    """
+    Font style class
+    """
     bold = "\033[1m"
     italic = "\033[3m"
     underline = "\033[4m"
