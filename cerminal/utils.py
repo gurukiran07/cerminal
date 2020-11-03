@@ -113,6 +113,6 @@ def get_color_codes(animation=False, background=False):
         sys.stdout.write("\n")
 
 
-cprint("hello world", color="a123", bold=True, italic=True)
+cprint("hello world", color="123", bold=True, italic=True)
 
-# get_color_codes(animation=True, background=True)
+get_color_codes(animation=True, background=True)
