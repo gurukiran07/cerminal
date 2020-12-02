@@ -4,12 +4,13 @@ from time import sleep
 
 
 def cprint(
-    text,
+    *objects,
     color=None,
     background=None,
     bold=False,
     italic=False,
     underline=False,
+    sep='',
     end="\n",
 ):
     """
@@ -25,7 +26,9 @@ def cprint(
     font_style = _set_font_style(bold=bold, italic=italic, underline=underline)
     output_style = bg + font_color + font_style
     sys.stdout.write(output_style)
-    sys.stdout.write(text)
+    for obj in objects:
+        sys.stdout.write(str(obj))
+        sys.stdout.write(sep)
     sys.stdout.write(_reset + end)
 
 
@@ -79,6 +82,6 @@ def get_color_codes(animation=False, background=False):
         sys.stdout.write("\n")
 
 
-#cprint("hello world", color="123", bold=True, italic=True)
+cprint("hello world", 12, [1,2,3], color="123", bold=True, italic=True, sep=', ')
 
 # get_color_codes(background=True)
