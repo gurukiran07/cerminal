@@ -5,6 +5,6 @@ Print colorized text
 
 
 
-<img src=https://github.com/gurukiran07/cerminal/blob/master/cerminal_gif.gif width=2000 height=250/>
+<img src=https://github.com/gurukiran07/cerminal/blob/master/gifs/cerminal_gif.gif width=2000 height=250/>
 
 <sub> *Source: [**`giphy`**](https://media.giphy.com/media/koyjGfQHIZQKk/giphy.gif)*</sub>
